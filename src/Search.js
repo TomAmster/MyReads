@@ -21,6 +21,12 @@ class Search extends Component{
             if (!books || books.hasOwnProperty('error')){
               this.setState({newBooks: []})
             } else {
+              books.map(book=> {
+                book.shelf='none';
+                this.props.books.forEach(bookOnShelf => {
+                  book.title ===bookOnShelf.title && (book.shelf=bookOnShelf.shelf)
+                })
+              })
               this.setState({newBooks:books})
             }
           })}
