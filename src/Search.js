@@ -12,12 +12,13 @@ class Search extends Component{
       }
 
     getSearchResult = (newQuery) =>{
+        
         const query = newQuery;
-        this.setState({ query });
+        this.setState({ query: newQuery.trim()});
     
         // if user input => run the search
         if (query) {
-          BooksAPI.search(this.state.query).then(books => {
+          BooksAPI.search(query).then(books => {
             if (!books || books.hasOwnProperty('error')){
               this.setState({newBooks: []})
             } else {
